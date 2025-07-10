@@ -1,30 +1,24 @@
-"use client";
+import type React from "react"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
 
-import React from "react";
-import { AuthProvider } from "@descope/nextjs-sdk";
-import { Inter as FontSans } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] })
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+export const metadata: Metadata = {
+  title: "AI V4 - Premium Trading Assistant",
+  description: "Advanced AI-powered trading platform for VIP users",
+    generator: 'v0.dev'
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
-      <AuthProvider
-        projectId={
-          process.env.NEXT_PUBLIC_DESCOPE_PROJECT_ID ||
-          "P2tEBjJR4tViVQ0Blc55EGnFxDNg"
-        }
-        baseUrl={process.env.NEXT_PUBLIC_DESCOPE_BASE_URL || ""}
-      >
-        <body className={fontSans.className}>{children}</body>
-      </AuthProvider>
+      <body className={inter.className}>{children}</body>
     </html>
-  );
+  )
 }
